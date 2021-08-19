@@ -9,9 +9,8 @@ import co.aikar.taskchain.TaskChain;
 import co.aikar.taskchain.TaskChainFactory;
 import lombok.Getter;
 import lombok.Setter;
-import me.aleiv.core.paper.commands.GlobalCMD;
+import me.aleiv.core.paper.commands.CinematicCMD;
 import me.aleiv.core.paper.listeners.GlobalListener;
-import us.jcedeno.libs.rapidinv.RapidInvManager;
 
 public class Core extends JavaPlugin {
 
@@ -29,8 +28,6 @@ public class Core extends JavaPlugin {
 
         taskChainFactory = BukkitTaskChainFactory.create(this);
 
-        RapidInvManager.register(this);
-
         //LISTENERS
 
         Bukkit.getPluginManager().registerEvents(new GlobalListener(this), this);
@@ -40,7 +37,7 @@ public class Core extends JavaPlugin {
         
         commandManager = new PaperCommandManager(this);
 
-        commandManager.registerCommand(new GlobalCMD(this));
+        commandManager.registerCommand(new CinematicCMD(this));
 
     }
 

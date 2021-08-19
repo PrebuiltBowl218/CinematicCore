@@ -1,11 +1,14 @@
 package me.aleiv.core.paper;
 
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import me.aleiv.core.paper.events.GameTickEvent;
+import me.aleiv.core.paper.objects.Cinematic;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -15,9 +18,12 @@ public class Game extends BukkitRunnable {
     long gameTime = 0;
     long startTime = 0;
 
-    public Game(Core instance) {
+    HashMap<String, Cinematic> cinematics;
+
+    public Game(Core instance){
         this.instance = instance;
         this.startTime = System.currentTimeMillis();
+        cinematics = new HashMap<>();
 
     }
 
@@ -29,5 +35,6 @@ public class Game extends BukkitRunnable {
         gameTime = new_time;
 
         Bukkit.getPluginManager().callEvent(new GameTickEvent(new_time, true));
+
     }
 }
